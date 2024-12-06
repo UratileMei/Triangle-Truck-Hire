@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Sql;
+
 
 namespace Triangle_Truck_Hire
 {
@@ -22,6 +24,7 @@ namespace Triangle_Truck_Hire
     {
         public MainWindow()
         {
+
             InitializeComponent();
         }
     }
