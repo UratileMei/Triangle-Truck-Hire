@@ -6,73 +6,98 @@
              xmlns:local="clr-namespace:Triangle_Truck_Hire.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="250,0,0,0">
-        <!-- Header -->
-        <StackPanel Orientation="Horizontal" Background="#34495E" Height="60" VerticalAlignment="Top">
-            <TextBlock Text="Dashboard" Foreground="White" FontSize="20" FontWeight="Bold" 
-                   VerticalAlignment="Center" Margin="20"/>
-        </StackPanel>
+    <Grid Background="White" Margin="250, 0, 0, 0">
+        <!-- Main Layout -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="*"/>
+            <!-- Content -->
+        </Grid.RowDefinitions>
 
-        <!-- Content Area -->
-        <Grid Margin="20,80,20,20">
+        <!-- Dashboard Header -->
+        <Border Background="#3E497A" Height="60" Grid.Row="0">
+            <TextBlock Text="Dashboard" Foreground="White" FontSize="24" FontWeight="Bold"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Dashboard Content -->
+        <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
+                <!-- Main Widgets -->
+                <ColumnDefinition Width="*"/>
+                <!-- Side Widgets -->
             </Grid.ColumnDefinitions>
 
-            <!-- Stats Section -->
-            <StackPanel Grid.Column="0" Margin="10">
-                <TextBlock Text="Overview" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-                <UniformGrid Columns="2" Rows="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <!-- Active Trucks -->
-                    <Border Background="#1ABC9C" CornerRadius="5" Margin="5">
+            <!-- Main Widgets Section -->
+            <StackPanel Grid.Column="0" Margin="5">
+                <!-- Summary Section -->
+                <Grid Height="100" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="#FFD700" CornerRadius="5" Margin="5" Padding="10">
                         <StackPanel>
-                            <TextBlock Text="Active Trucks" FontSize="14" FontWeight="Bold" Foreground="White" Margin="10"/>
-                            <TextBlock Text="15" FontSize="36" FontWeight="Bold" Foreground="White" Margin="10"/>
+                            <TextBlock Text="Available Trucks" FontWeight="Bold"/>
+                            <TextBlock Text="10" FontSize="20" Foreground="Black" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
+                    <Border Grid.Column="1" Background="#FFA07A" CornerRadius="5" Margin="5" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Active Bookings" FontWeight="Bold"/>
+                            <TextBlock Text="15" FontSize="20" Foreground="Black" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2" Background="#98FB98" CornerRadius="5" Margin="5" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Upcoming Bookings" FontWeight="Bold"/>
+                            <TextBlock Text="5" FontSize="20" Foreground="Black" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="3" Background="#87CEFA" CornerRadius="5" Margin="5" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Trucks in Maintenance" FontWeight="Bold"/>
+                            <TextBlock Text="2" FontSize="20" Foreground="Black" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
 
-                    <!-- Available Trucks -->
-                    <Border Background="#3498DB" CornerRadius="5" Margin="5">
-                        <StackPanel>
-                            <TextBlock Text="Available Trucks" FontSize="14" FontWeight="Bold" Foreground="White" Margin="10"/>
-                            <TextBlock Text="10" FontSize="36" FontWeight="Bold" Foreground="White" Margin="10"/>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Completed Loads -->
-                    <Border Background="#E67E22" CornerRadius="5" Margin="5">
-                        <StackPanel>
-                            <TextBlock Text="Completed Loads" FontSize="14" FontWeight="Bold" Foreground="White" Margin="10"/>
-                            <TextBlock Text="120" FontSize="36" FontWeight="Bold" Foreground="White" Margin="10"/>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Pending Loads -->
-                    <Border Background="#E74C3C" CornerRadius="5" Margin="5">
-                        <StackPanel>
-                            <TextBlock Text="Pending Loads" FontSize="14" FontWeight="Bold" Foreground="White" Margin="10"/>
-                            <TextBlock Text="5" FontSize="36" FontWeight="Bold" Foreground="White" Margin="10"/>
-                        </StackPanel>
-                    </Border>
-                </UniformGrid>
+                <!-- Truck Status Grid -->
+                <Border Background="#F0F0F0" CornerRadius="5" Padding="10" Margin="0,10,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Truck Status" FontWeight="Bold" FontSize="16" Margin="0,0,0,5"/>
+                        <DataGrid AutoGenerateColumns="True" Height="200" Name="TruckStatusGrid"
+                                  HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
 
-            <!-- Load Schedule -->
-            <StackPanel Grid.Column="1" Margin="10">
-                <TextBlock Text="Schedule" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-                <ListView Background="White" BorderBrush="#34495E" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Load ID" Width="100" DisplayMemberBinding="{Binding LoadId}"/>
-                            <GridViewColumn Header="Truck" Width="150" DisplayMemberBinding="{Binding Truck}"/>
-                            <GridViewColumn Header="Driver" Width="150" DisplayMemberBinding="{Binding Driver}"/>
-                            <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+            <!-- Side Widgets Section -->
+            <StackPanel Grid.Column="1" Margin="5">
+                <!-- Alerts and Notifications -->
+                <Border Background="#FFE4B5" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="Alerts" FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="1. Border delay for Lethlakane" FontSize="14"/>
+                        <TextBlock Text="2. Truck HX75YT requires urgent servicing" FontSize="14"/>
+                    </StackPanel>
+                </Border>
 
-
+                <!-- Driver Management -->
+                <Border Background="#F5F5DC" CornerRadius="5" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Drivers On Duty" FontWeight="Bold" FontSize="16"/>
+                        <ListBox Name="DriverList">
+                            <ListBoxItem>Isaac</ListBoxItem>
+                            <ListBoxItem>Steven</ListBoxItem>
+                            <ListBoxItem>Eugene</ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Grid>
     </Grid>
