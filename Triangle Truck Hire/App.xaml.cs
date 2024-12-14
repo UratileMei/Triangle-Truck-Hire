@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using System.Windows;
+using Triangle_Truck_Hire.Data;
 
 
 
@@ -16,5 +17,13 @@ namespace Triangle_Truck_Hire
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Initialize SQLite database
+            DatabaseHelper.InitializeDatabase();
+        }
+
     }
 }

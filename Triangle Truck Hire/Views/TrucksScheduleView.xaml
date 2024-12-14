@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Triangle_Truck_Hire.Views.TrucksScheduleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Triangle_Truck_Hire.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="250,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- DataGrid for Display -->
+        <DataGrid x:Name="TrucksDataGrid" AutoGenerateColumns="False" Margin="10" Grid.Column="0" ItemsSource="{Binding TruckData}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Size" Binding="{Binding Size}" />
+                <DataGridTextColumn Header="Reg No" Binding="{Binding RegNo}" />
+                <DataGridTextColumn Header="Hire" Binding="{Binding Hire}" />
+                <DataGridTextColumn Header="Booking" Binding="{Binding Booking}" />
+                <DataGridTextColumn Header="Contract No" Binding="{Binding ContractNo}" />
+                <DataGridTextColumn Header="Driver" Binding="{Binding Driver}" />
+                <DataGridTextColumn Header="Destination" Binding="{Binding Destination}" />
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Input Form -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Add or Update Truck Data" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+            
+            <Label Content="Size:" />
+            <TextBox x:Name="SizeInput" />
+
+            <Label Content="Reg No:" />
+            <TextBox x:Name="RegNoInput" />
+
+            <Label Content="Hire:" />
+            <TextBox x:Name="HireInput" />
+
+            <Label Content="Booking Date:" />
+            <TextBox x:Name="BookingInput" />
+
+            <Label Content="Contract No:" />
+            <TextBox x:Name="ContractNoInput" />
+
+            <Label Content="Driver:" />
+            <TextBox x:Name="DriverInput" />
+
+            <Label Content="Destination:" />
+            <TextBox x:Name="DestinationInput" />
+
+            <Label Content="Notes:" />
+            <TextBox x:Name="NotesInput" />
+
+            <Button Content="Add/Update" Click="AddOrUpdateTruck" Margin="0,10,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>
