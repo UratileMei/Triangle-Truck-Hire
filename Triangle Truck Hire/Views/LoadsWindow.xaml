@@ -7,6 +7,38 @@
         mc:Ignorable="d"
         Title="LoadsWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Input Section -->
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Label Content="Load Name:" VerticalAlignment="Center" />
+            <TextBox x:Name="LoadNameTextBox" Width="120" Margin="5" />
+            <Label Content="Destination:" VerticalAlignment="Center" />
+            <TextBox x:Name="DestinationTextBox" Width="120" Margin="5" />
+            <Label Content="Driver:" VerticalAlignment="Center" />
+            <TextBox x:Name="DriverTextBox" Width="120" Margin="5" />
+            <Label Content="Date:" VerticalAlignment="Center" />
+            <DatePicker x:Name="LoadDatePicker" Width="120" Margin="5" />
+            <Button Content="Add" Click="AddLoadButton_Click" Margin="5" />
+            <Button Content="Edit" Click="EditLoadButton_Click" Margin="5" />
+            <Button Content="Delete" Click="DeleteLoadButton_Click" Margin="5" />
+        </StackPanel>
+
+        <!-- DataGrid Section -->
+        <DataGrid x:Name="LoadsDataGrid" Grid.Row="1" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                <DataGridTextColumn Header="Load Name" Binding="{Binding Name}" Width="150" />
+                <DataGridTextColumn Header="Destination" Binding="{Binding Destination}" Width="150" />
+                <DataGridTextColumn Header="Driver" Binding="{Binding Driver}" Width="150" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
+
+  
+

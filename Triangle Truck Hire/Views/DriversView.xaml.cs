@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,56 +19,89 @@ namespace Triangle_Truck_Hire.Views
 {
     public partial class DriversView : UserControl
     {
+        // ObservableCollection to store drivers dynamically
+        public ObservableCollection<Driver> Drivers { get; set; }
+
         public DriversView()
         {
             InitializeComponent();
+
+            // Initialize the collection and set it as the data source for the ListView
+            Drivers = new ObservableCollection<Driver>();
+            DriversListView.ItemsSource = Drivers;
         }
 
         private void AddDriverButton_Click(object sender, RoutedEventArgs e)
         {
-            // Logic to add a new driver
             string name = NameTextBox.Text;
             string licenseNumber = LicenseNumberTextBox.Text;
             string phoneNumber = PhoneNumberTextBox.Text;
 
-            // Example validation
+            // Validation
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(licenseNumber))
             {
-                MessageBox.Show("Please fill in all required fields.");
+                MessageBox.Show("Name and License Number are required fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Add the driver to the list (replace with actual logic for database or collection)
-            MessageBox.Show($"Driver '{name}' added successfully!");
+            // Add new driver to the ObservableCollection
+            Drivers.Add(new Driver
+            {
+                Id = Drivers.Count + 1, // Generate a simple ID
+                Name = name,
+                LicenseNumber = licenseNumber,
+                PhoneNumber = phoneNumber
+            });
+
+            // Clear input fields
+            NameTextBox.Clear();
+            LicenseNumberTextBox.Clear();
+            PhoneNumberTextBox.Clear();
         }
 
         private void EditDriverButton_Click(object sender, RoutedEventArgs e)
         {
-            // Logic to edit a selected driver
-            var selectedDriver = DriversListView.SelectedItem;
-            if (selectedDriver == null)
+            if (DriversListView.SelectedItem is Driver selectedDriver)
             {
-                MessageBox.Show("Please select a driver to edit.");
-                return;
-            }
+                selectedDriver.Name = NameTextBox.Text;
+                selectedDriver.LicenseNumber = LicenseNumberTextBox.Text;
+                selectedDriver.PhoneNumber = PhoneNumberTextBox.Text;
 
-            // Update the driver details (replace with actual logic for database or collection)
-            MessageBox.Show("Driver details updated successfully!");
+                // Refresh the ListView
+                DriversListView.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Please select a driver to edit.", "Edit Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void DeleteDriverButton_Click(object sender, RoutedEventArgs e)
         {
-            // Logic to delete a selected driver
-            var selectedDriver = DriversListView.SelectedItem;
-            if (selectedDriver == null)
+            if (DriversListView.SelectedItem is Driver selectedDriver)
             {
-                MessageBox.Show("Please select a driver to delete.");
-                return;
+                // Remove the driver from the collection
+                Drivers.Remove(selectedDriver);
             }
-
-            // Remove the driver from the list (replace with actual logic for database or collection)
-            MessageBox.Show("Driver deleted successfully!");
+            else
+            {
+                MessageBox.Show("Please select a driver to delete.", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
+
+    // Driver Model Class
+    public class Driver
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string LicenseNumber { get; set; }
+        public string PhoneNumber { get; set; }
+    }
 }
+
+
+
+
+
 

@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="ReportsWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Filtering Section -->
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Label Content="Filter by Driver:" VerticalAlignment="Center" />
+            <TextBox x:Name="DriverFilterTextBox" Width="120" Margin="5" />
+            <Label Content="Filter by Date:" VerticalAlignment="Center" />
+            <DatePicker x:Name="DateFilterPicker" Width="150" Margin="5" />
+            <Button Content="Apply Filters" Click="ApplyFiltersButton_Click" Margin="5" />
+            <Button Content="Clear Filters" Click="ClearFiltersButton_Click" Margin="5" />
+        </StackPanel>
+
+        <!-- DataGrid for Reports -->
+        <DataGrid x:Name="ReportsDataGrid" Grid.Row="1" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                <DataGridTextColumn Header="Load Name" Binding="{Binding LoadName}" Width="150" />
+                <DataGridTextColumn Header="Destination" Binding="{Binding Destination}" Width="150" />
+                <DataGridTextColumn Header="Driver" Binding="{Binding Driver}" Width="150" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=dd/MM/yyyy}" Width="100" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
+
