@@ -26,8 +26,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <!-- Main Widgets -->
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
                 <!-- Side Widgets -->
+                
             </Grid.ColumnDefinitions>
 
             <!-- Main Widgets Section -->
