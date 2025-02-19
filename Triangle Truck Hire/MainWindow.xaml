@@ -35,13 +35,14 @@
             </Setter>
         </Style>
     </Window.Resources>
+    
     <Grid>
         <!-- Navigation Panel -->
         <DockPanel Background="#2C3E50" Width="250" VerticalAlignment="Stretch" HorizontalAlignment="Left">
             <StackPanel>
                 <TextBlock Text="Triangle Truck Hire" Foreground="White" FontSize="18" FontWeight="Bold" 
                            Margin="10" TextAlignment="Center"/>
-                <Button Content="Dashboard" Margin="10" Style="{StaticResource NavButtonStyle}" Click="ShowDashboard"/>
+                <Button Content="Dashboard" Margin="10"  Style="{StaticResource NavButtonStyle}" Click="ShowDashboard" IsEnabled="True"/>
                     <Button Content="Trucks" Margin="10" Style="{StaticResource NavButtonStyle}" Click="OpenTrucksSchedule"/>
                     <Button Content="Drivers" Margin="10" Style="{StaticResource NavButtonStyle}" Click="ShowDrivers"/>
                     <Button Content="Loads" Margin="10" Style="{StaticResource NavButtonStyle}" Click="OpenLoadsWindow"/>

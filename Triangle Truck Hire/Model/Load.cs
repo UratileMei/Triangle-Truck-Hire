@@ -9,10 +9,10 @@ namespace Triangle_Truck_Hire.Model
     public class Load
     {
         public int Id { get; set; }
-        public string PickupLocation { get; set; }
-        public string DropoffLocation { get; set; }
-        public int TruckId { get; set; }
+        public string Description { get; set; }
+        public DateTime PickupDate { get; set; }
+        public string Destination { get; set; }
         public int DriverId { get; set; }
-        public string Status { get; set; }
+        public Driver Driver { get; set; }
     }
 }

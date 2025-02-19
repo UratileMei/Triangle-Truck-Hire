@@ -21,8 +21,7 @@ namespace Triangle_Truck_Hire
         {
             base.OnStartup(e);
 
-            // Initialize SQLite database
-            DatabaseHelper.InitializeDatabase();
+            
         }
 
     }

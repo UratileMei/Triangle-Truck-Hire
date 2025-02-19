@@ -10,6 +10,7 @@ namespace Triangle_Truck_Hire.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsAvailable { get; set; }
+        public string LicenseNumber { get; set; }
+        public string ContactNumber { get; set; }
     }
 }
